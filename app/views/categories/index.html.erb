@@ -1,0 +1,39 @@
+<div class="bg_color">
+    <div class="page-header">
+      <%= link_to new_category_path, class: 'btn btn-primary' do %>
+          <span class="glyphicon glyphicon-plus"></span>
+          New Category
+      <% end %>
+      <h1 class="white">Categories</h1>
+    </div>
+    <div class="container">
+      <div class="center">
+        <%= content_tag_for(:tr, @categories) do |category| %>
+                <div class="thumbnail boxes">
+                  <div class="glyphicon_position">
+                    <%= link_to '', category, method: :delete, data: { confirm: 'Are you sure?'}, :class => "glyphicon glyphicon-remove remove"  %>
+                  </div>
+                  <div class="caption">
+                    <div class="imgbox">
+                      <%= image_tag category.picture %>
+                    </div>
+                    <span class="fonth3"><%= category.category_name %></span>
+                    <span class="mar5">
+                        <%= link_to '', category, :class => "glyphicon glyphicon-info-sign" %>
+                    </span>
+                    <span class="mar5">
+                        <%= link_to '', edit_category_path(category), :class => "glyphicon glyphicon-pencil" %>
+                    </span>
+
+                    <p><%= category.description %></p>
+                    <% if category.status == true %>
+                        <p class="status"><b>Status:</b> <span class="green">Available</span></p>
+                    <% else %>
+                        <p class="status"><b>Status:</b> <span class="red">Not Available</span></p>
+                    <% end %>
+                  </div>
+                </div>
+        <% end %>
+      </div>
+    </div>
+</div>
